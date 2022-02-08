@@ -1,9 +1,9 @@
-import {Head} from '../components/Head';
-import {Navbar} from '../components/Navbar';
-import {Footer} from '../components/Footer'
-import {Hero} from '../components/Hero';
-import styles from '../styles/Home.module.css'
-import { getHomeHero } from "../lib/Hero";
+import {Head} from 'components/Head';
+import {Navbar} from 'components/Navbar';
+import {Footer} from 'components/Footer'
+import {Hero} from 'components/Hero';
+import styles from 'styles/Home.module.css'
+import { getHomeHero } from "lib/Hero";
 
 
 export default function Home({ hero }) {
