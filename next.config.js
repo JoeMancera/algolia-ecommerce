@@ -1,6 +1,6 @@
 module.exports = {
   reactStrictMode: true,
-//   images: {
-//     domains: ["cdn.pixabay.com"]
-//  }
+   images: {
+     domains: ["images.ctfassets.net"]
+  }
 }
