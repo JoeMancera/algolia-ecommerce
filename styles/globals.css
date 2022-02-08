@@ -18,5 +18,5 @@ a {
 * {
   box-sizing: border-box;
   /* TODO: Remove to production */
-  outline: 1px solid red;
+  /* outline: 1px solid red; */
 }
