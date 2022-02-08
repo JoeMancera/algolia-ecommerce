@@ -3,7 +3,9 @@ import Link from "next/link";
 export const Navbar = () => {
   return (
     <nav className="flex justify-between p-3">
-      <a href="#">IconBrand</a>
+      <Link href="/">
+        <a>IconBrand</a>
+      </Link>
       <ul className="flex space-x-8 ">
         <Link href="/projects">
           <a>Projects</a>
