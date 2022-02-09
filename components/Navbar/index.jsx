@@ -4,13 +4,15 @@ export const Navbar = () => {
   return (
     <nav className="flex justify-between p-3">
       <Link href="/">
-        <a>IconBrand</a>
+        <a className="hover:text-blue-400">IconBrand</a>
       </Link>
       <ul className="flex space-x-8 ">
         <Link href="/projects">
-          <a>Projects</a>
+          <a className="hover:text-blue-400">Projects</a>
         </Link>
-        <li>Outdoor</li>
+        <Link href="/products">
+          <a className="hover:text-blue-400">Products</a>
+        </Link>
         <li>Umbrellas</li>
         <li>Floor</li>
         <li>Trade</li>
