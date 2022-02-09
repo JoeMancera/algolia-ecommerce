@@ -3,24 +3,10 @@ import { CommonLayout } from "components/CommonLayout";
 import { Hero } from "components/Hero";
 import { ContentfulHeros } from "@contentful/contentfulHeros";
 import { ContentfulProjects } from "@contentful/contentfulProjects";
-import { BLOCKS, MARKS } from "@contentful/rich-text-types";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import Image from "next/image";
+import { Project } from "components/Project";
+import ProjectList from "components/ProjectList";
 
 export default function Projects({ hero, projects }) {
-  console.log(projects);
-  const richTextOptions = {
-    renderMark: {
-      [MARKS.BOLD]: (text) => <b>{text}</b>,
-    },
-    renderNode: {
-      [BLOCKS.PARAGRAPH]: (node, children) => (
-        <p className="relative">{children}</p>
-      ),
-    },
-    renderText: (text) => text.replace("!", "?"),
-  };
-
   return (
     <CommonLayout>
       <Head description="Curran example">Curran | Projects</Head>
@@ -35,24 +21,11 @@ export default function Projects({ hero, projects }) {
         </p>
         <section>
           <h2>Projects</h2>
-          {projects.map((project) => {
-            return (
-              <div key={project.sys.id} style={{ position: "relative" }}>
-                <Image
-                  src={project.image.url}
-                  alt={project.image.description}
-                  layout="fill"
-                  objectFit="cover"
-                  priority={true}
-                />
-                <h3 className="z-10 relative">{project.title}</h3>
-                {documentToReactComponents(
-                  project.description.json,
-                  richTextOptions
-                )}
-              </div>
-            );
-          })}
+          <ProjectList>
+            {projects.map((project) => {
+              return <Project key={project.sys.id} project={project} />;
+            })}
+          </ProjectList>
         </section>
       </div>
     </CommonLayout>
