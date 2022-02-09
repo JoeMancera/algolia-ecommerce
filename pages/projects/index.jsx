@@ -1,7 +1,7 @@
 import { Head } from "components/Head";
 import { CommonLayout } from "components/CommonLayout";
 import { Hero } from "components/Hero";
-import { getProjectsHero } from "lib/Hero";
+import { ContentfulHeros } from "@contentful/contentfulHeros";
 
 export default function Projects({ hero }) {
   return (
@@ -22,7 +22,7 @@ export default function Projects({ hero }) {
 }
 
 export async function getStaticProps() {
-  const hero = (await getProjectsHero()) || {};
+  const hero = (await ContentfulHeros.getHeroItems(1)) || {};
   return {
     props: { hero },
   };

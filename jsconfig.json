@@ -3,7 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "@components/*": ["components/*"],
-      "@utils/*": ["utils/*"]
+      "@contentful/*": ["lib/contentful/*"],
     }
   },
   "exclude": ["node_modules", ".nuxt", "dist"]

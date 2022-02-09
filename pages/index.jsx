@@ -1,7 +1,7 @@
 import { Head } from "components/Head";
 import { CommonLayout } from "components/CommonLayout";
 import { Hero } from "components/Hero";
-import { getHomeHero } from "lib/Hero";
+import { ContentfulHeros } from "@contentful/contentfulHeros";
 
 export default function Home({ hero }) {
   return (
@@ -22,7 +22,7 @@ export default function Home({ hero }) {
 }
 
 export async function getStaticProps() {
-  const hero = (await getHomeHero()) || {};
+  const hero = (await ContentfulHeros.getHeroItems(0)) || {};
   return {
     props: { hero },
   };
