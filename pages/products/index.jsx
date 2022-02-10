@@ -4,10 +4,10 @@ import { Head } from "components/Head";
 import { CommonLayout } from "components/CommonLayout";
 import { Hero } from "components/Hero";
 import { Hit } from "components/Hit";
+import SearchForm from "components/SearchForm";
 import { ContentfulHeros } from "@contentful/contentfulHeros";
 import {
   InstantSearch,
-  SearchBox,
   onSearchStateChange,
   Hits,
 } from "react-instantsearch-dom";
@@ -43,32 +43,7 @@ export default function Products({ hero, searchState, createURL }) {
         onSearchStateChange={onSearchStateChange}
       >
         <header className="header" ref={headerRef}>
-          <SearchBox
-            translations={{
-              placeholder: "Product, brand, color, …",
-            }}
-            submit={
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 18 18"
-              >
-                <g
-                  fill="none"
-                  fillRule="evenodd"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.67"
-                  transform="translate(1 1)"
-                >
-                  <circle cx="7.11" cy="7.11" r="7.11" />
-                  <path d="M16 16l-3.87-3.87" />
-                </g>
-              </svg>
-            }
-          />
+          <SearchForm />
         </header>
         <Hits className="flex" hitComponent={Hit} />
       </InstantSearch>
