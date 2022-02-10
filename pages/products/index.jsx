@@ -10,6 +10,8 @@ import {
   InstantSearch,
   onSearchStateChange,
   Hits,
+  Panel,
+  RefinementList,
 } from "react-instantsearch-dom";
 
 const searchClient = algoliasearch(
@@ -35,18 +37,34 @@ export default function Products({ hero, searchState, createURL }) {
         </p>
       </div>
 
-      <InstantSearch
-        searchClient={searchClient}
-        indexName="test_index"
-        searchState={searchState}
-        createURL={createURL}
-        onSearchStateChange={onSearchStateChange}
-      >
-        <header className="header" ref={headerRef}>
-          <SearchForm />
-        </header>
-        <Hits className="flex" hitComponent={Hit} />
-      </InstantSearch>
+      <section className="flex">
+        <InstantSearch
+          searchClient={searchClient}
+          indexName="test_index"
+          searchState={searchState}
+          createURL={createURL}
+          onSearchStateChange={onSearchStateChange}
+        >
+          <div className="w-1/3 my-5">
+            <Panel header="Brands">
+              <RefinementList
+                attribute="brand"
+                searchable={false}
+                translations={{
+                  placeholder: "Search for brands…",
+                }}
+              />
+            </Panel>
+          </div>
+
+          <div className="w-2/3">
+            <header className="header" ref={headerRef}>
+              <SearchForm />
+            </header>
+            <Hits className="flex" hitComponent={Hit} />
+          </div>
+        </InstantSearch>
+      </section>
     </CommonLayout>
   );
 }
