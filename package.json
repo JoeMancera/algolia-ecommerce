@@ -10,9 +10,12 @@
   "dependencies": {
     "@contentful/rich-text-react-renderer": "15.11.1",
     "@contentful/rich-text-types": "15.11.1",
+    "algoliasearch": "4.12.1",
     "next": "12.0.10",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-instantsearch-dom": "6.22.0",
+    "react-instantsearch-hooks-server": "6.22.0",
     "styled-components": "5.3.3"
   },
   "devDependencies": {
