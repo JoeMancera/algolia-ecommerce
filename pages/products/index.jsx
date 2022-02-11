@@ -12,6 +12,7 @@ import {
   Hits,
   Panel,
   RefinementList,
+  HierarchicalMenu,
 } from "react-instantsearch-dom";
 
 const searchClient = algoliasearch(
@@ -54,6 +55,10 @@ export default function Products({ hero, searchState, createURL }) {
                   placeholder: "Search for brands…",
                 }}
               />
+            </Panel>
+
+            <Panel header="Category">
+              <HierarchicalMenu attributes={["categories"]} />
             </Panel>
           </div>
 
