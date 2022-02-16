@@ -1,20 +1,14 @@
 import { Head } from "components/Head";
 import { CommonLayout } from "components/CommonLayout";
 import { Hero } from "components/Hero";
-import { ContentfulHeros } from "@contentful/contentfulHeros";
 import { ContentfulBlogPosts } from "@contentful/contentfulBlogPosts";
 import ReactMarkdown from "react-markdown";
 
-export default function BlogPost({
-  heroImage = "",
-  title = "",
-  description = "",
-  blogPost,
-}) {
+export default function BlogPost({ blogPost }) {
   const hero = {
-    heroImage: heroImage,
-    heroTitle: title,
-    description: description,
+    heroImage: blogPost.heroImage,
+    heroTitle: blogPost.title,
+    description: blogPost.description,
   };
 
   return (
@@ -59,11 +53,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const hero = (await ContentfulHeros.getHeroItems(2)) || {};
   const { slug } = params;
   const blogPost = (await ContentfulBlogPosts.getAllBlogPost({ slug })) || {};
 
   return {
-    props: { hero, blogPost },
+    props: { blogPost },
   };
 }
