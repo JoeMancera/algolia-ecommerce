@@ -1,10 +1,17 @@
+import { useRouter } from "next/router";
 import { Head } from "components/Head";
 import { CommonLayout } from "components/CommonLayout";
 import { Hero } from "components/Hero";
 import { ContentfulHeros } from "@contentful/contentfulHeros";
-import { ContenfulBlogPosts } from "@contentful/contenfulBlogPosts";
+import { ContentfulBlogPosts } from "@contentful/contentfulBlogPosts";
 
 export default function BlogPost({ hero, blogPost }) {
+  const router = useRouter();
+  console.log("router", router);
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <CommonLayout>
       <Head description="Curran example">
@@ -27,7 +34,7 @@ export default function BlogPost({ hero, blogPost }) {
 
 // This function gets called at build time
 export async function getStaticPaths() {
-  const blogPostsSlug = (await ContenfulBlogPosts.getSlugBlogPosts()) || {};
+  const blogPostsSlug = (await ContentfulBlogPosts.getSlugBlogPosts()) || {};
 
   // Get the paths we want to pre-render based on posts
   const paths = blogPostsSlug.map((post) => ({
@@ -38,16 +45,17 @@ export async function getStaticPaths() {
   // { fallback: false } means other routes should 404.
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
 
 export async function getStaticProps({ params }) {
   const hero = (await ContentfulHeros.getHeroItems(2)) || {};
   const { slug } = params;
-  const blogPost = (await ContenfulBlogPosts.getAllBlogPost({ slug })) || {};
+  const blogPost = (await ContentfulBlogPosts.getAllBlogPost({ slug })) || {};
 
   return {
     props: { hero, blogPost },
+    revalidate: 1,
   };
 }

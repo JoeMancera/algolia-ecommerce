@@ -3,13 +3,13 @@ import { Head } from "components/Head";
 import { CommonLayout } from "components/CommonLayout";
 import { Hero } from "components/Hero";
 import { ContentfulHeros } from "@contentful/contentfulHeros";
-import { ContenfulBlogPosts } from "@contentful/contenfulBlogPosts";
+import { ContentfulBlogPosts } from "@contentful/contentfulBlogPosts";
 import Image from "next/image";
 
 export default function Blog({ hero, blogPosts }) {
   return (
     <CommonLayout>
-      <Head description="Curran example">Contenful + Algolia | Home</Head>
+      <Head description="Curran example">Contenful + Algolia | Blog</Head>
 
       <Hero hero={hero} />
       <div>
@@ -47,7 +47,7 @@ export default function Blog({ hero, blogPosts }) {
 
 export async function getStaticProps() {
   const hero = (await ContentfulHeros.getHeroItems(2)) || {};
-  const blogPosts = (await ContenfulBlogPosts.getAllBlogPost()) || {};
+  const blogPosts = (await ContentfulBlogPosts.getAllBlogPost()) || {};
   return {
     props: { hero, blogPosts },
   };
