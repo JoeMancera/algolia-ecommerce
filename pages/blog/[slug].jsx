@@ -5,11 +5,16 @@ import { ContentfulHeros } from "@contentful/contentfulHeros";
 import { ContentfulBlogPosts } from "@contentful/contentfulBlogPosts";
 import ReactMarkdown from "react-markdown";
 
-export default function BlogPost({ blogPost }) {
+export default function BlogPost({
+  heroImage = "",
+  title = "",
+  description = "",
+  blogPost,
+}) {
   const hero = {
-    heroImage: blogPost.heroImage,
-    heroTitle: blogPost.title,
-    description: blogPost.description,
+    heroImage: heroImage,
+    heroTitle: title,
+    description: description,
   };
 
   return (
@@ -49,7 +54,7 @@ export async function getStaticPaths() {
   // { fallback: false } means other routes should 404.
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 }
 
@@ -60,6 +65,5 @@ export async function getStaticProps({ params }) {
 
   return {
     props: { hero, blogPost },
-    revalidate: 1,
   };
 }

@@ -8,7 +8,6 @@ import SearchForm from "components/SearchForm";
 import { ContentfulHeros } from "@contentful/contentfulHeros";
 import {
   InstantSearch,
-  onSearchStateChange,
   Hits,
   Panel,
   RefinementList,
@@ -47,7 +46,6 @@ export default function Products({ hero, searchState, createURL }) {
           indexName="test_index"
           searchState={searchState}
           createURL={createURL}
-          onSearchStateChange={onSearchStateChange}
         >
           <div className="w-1/3 my-5">
             <Panel header="Brands">
