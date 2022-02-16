@@ -26,7 +26,9 @@ export default function Products({ hero, searchState, createURL }) {
 
   return (
     <CommonLayout>
-      <Head description="Curran list of products">Curran | Products</Head>
+      <Head description="Curran list of products">
+        Contenful + Algolia | Products
+      </Head>
 
       <Hero hero={hero} />
 
@@ -123,7 +125,7 @@ export default function Products({ hero, searchState, createURL }) {
 }
 
 export async function getStaticProps() {
-  const hero = (await ContentfulHeros.getHeroItems(2)) || {};
+  const hero = (await ContentfulHeros.getHeroItems(3)) || {};
   return {
     props: { hero },
   };

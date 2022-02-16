@@ -9,7 +9,7 @@ import ProjectList from "components/ProjectList";
 export default function Projects({ hero, projects }) {
   return (
     <CommonLayout>
-      <Head description="Curran example">Curran | Projects</Head>
+      <Head description="Curran example">Contenful + Algolia | Projects</Head>
 
       <Hero hero={hero} />
       <div>

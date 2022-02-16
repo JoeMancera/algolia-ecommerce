@@ -13,7 +13,9 @@ export const Navbar = () => {
         <Link href="/products">
           <a className="hover:text-blue-400">Products</a>
         </Link>
-        <li>Umbrellas</li>
+        <Link href="/blog">
+          <a className="hover:text-blue-400">Blog</a>
+        </Link>
         <li>Floor</li>
         <li>Trade</li>
       </ul>

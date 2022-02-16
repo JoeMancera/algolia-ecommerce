@@ -6,7 +6,7 @@ import { ContentfulHeros } from "@contentful/contentfulHeros";
 export default function Home({ hero }) {
   return (
     <CommonLayout>
-      <Head description="Curran example">Curran | Home</Head>
+      <Head description="Curran example">Contenful + Algolia | Home</Head>
 
       <Hero hero={hero} />
       <div>
