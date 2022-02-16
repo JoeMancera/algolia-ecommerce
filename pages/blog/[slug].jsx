@@ -1,33 +1,37 @@
-import { useRouter } from "next/router";
 import { Head } from "components/Head";
 import { CommonLayout } from "components/CommonLayout";
 import { Hero } from "components/Hero";
 import { ContentfulHeros } from "@contentful/contentfulHeros";
 import { ContentfulBlogPosts } from "@contentful/contentfulBlogPosts";
+import ReactMarkdown from "react-markdown";
 
-export default function BlogPost({ hero, blogPost }) {
-  const router = useRouter();
-  console.log("router", router);
-  if (router.isFallback) {
-    return <div>Loading...</div>;
-  }
+export default function BlogPost({ blogPost }) {
+  const hero = {
+    heroImage: blogPost.heroImage,
+    heroTitle: blogPost.title,
+    description: blogPost.description,
+  };
 
   return (
     <CommonLayout>
       <Head description="Curran example">
-        Contenful + Algolia | {blogPost.title}
+        Contentful + Algolia | {blogPost.title}
       </Head>
 
       <Hero hero={hero} />
-      <div>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero nihil
-          doloribus corporis earum. Corporis omnis ullam repellendus recusandae
-          animi! Repellat est expedita provident facilis. Deserunt impedit
-          inventore recusandae asperiores id?
-        </p>
-        <h1 className="text-xl">{blogPost.title}</h1>
-      </div>
+      <ReactMarkdown
+        components={{
+          h2: (props) => (
+            <h2 className="text-xl text-orange-600 my-4" {...props} />
+          ),
+          p: (props) => <p className="ml-2" {...props} />,
+          a: (props) => <a className="text-blue-600" {...props} />,
+          li: (props) => <li className="ml-8 list-disc" {...props} />,
+        }}
+        className="mt-4"
+      >
+        {blogPost.body}
+      </ReactMarkdown>
     </CommonLayout>
   );
 }

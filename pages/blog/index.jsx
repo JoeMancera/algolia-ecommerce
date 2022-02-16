@@ -21,19 +21,20 @@ export default function Blog({ hero, blogPosts }) {
         </p>
 
         <ul className="grid grid-cols-3 gap-4 mt-3">
-          {blogPosts.map(({ title, slug, heroImage }) => {
+          {blogPosts.map(({ title, slug, heroImage, description }) => {
             return (
               <li className="flex flex-col" key={slug}>
                 <Link href={`/blog/${slug}`}>
                   <a className="text-blue-500 hover:text-orange-500">
                     <Image
-                      className="rounded-2xl"
+                      className="hover:scale-110 duration-200"
                       width="350px"
                       height="200px"
                       src={heroImage.url}
                       alt={heroImage.title}
                     />
                     <h2 className="font-bold text-lg">{title}</h2>
+                    <p className="text-blue-900">{description}</p>
                   </a>
                 </Link>
               </li>
