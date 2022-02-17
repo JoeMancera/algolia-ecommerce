@@ -9,7 +9,7 @@ export const Hero = ({ hero }) => {
         alt={hero.description}
         layout="fill"
         objectFit="cover"
-        priority={true}
+        priority={false}
       />
       <p>{hero.heroTitle}</p>
     </header>

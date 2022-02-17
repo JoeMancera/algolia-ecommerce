@@ -5,6 +5,7 @@ import { ContentfulBlogPosts } from "@contentful/contentfulBlogPosts";
 import ReactMarkdown from "react-markdown";
 
 export default function BlogPost({ blogPost }) {
+  if (!blogPost) return <div>Loading...</div>;
   const hero = {
     heroImage: blogPost.heroImage,
     heroTitle: blogPost.title,
@@ -48,7 +49,7 @@ export async function getStaticPaths() {
   // { fallback: false } means other routes should 404.
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
 
@@ -58,5 +59,6 @@ export async function getStaticProps({ params }) {
 
   return {
     props: { blogPost },
+    revalidate: 1,
   };
 }

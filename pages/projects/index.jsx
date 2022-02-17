@@ -37,5 +37,6 @@ export async function getStaticProps() {
   const projects = (await ContentfulProjects.getProjects()) || [];
   return {
     props: { hero, projects },
+    revalidate: 1,
   };
 }
