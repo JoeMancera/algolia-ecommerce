@@ -57,6 +57,15 @@ export async function getStaticProps({ params }) {
   const { slug } = params;
   const blogPost = (await ContentfulBlogPosts.getAllBlogPost({ slug })) || {};
 
+  if (!blogPost.title) {
+    return {
+      redirect: {
+        destination: "/404",
+        permanent: false,
+      },
+    };
+  }
+
   return {
     props: { blogPost },
     revalidate: 10,
