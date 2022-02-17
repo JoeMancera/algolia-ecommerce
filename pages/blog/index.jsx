@@ -51,5 +51,6 @@ export async function getStaticProps() {
   const blogPosts = (await ContentfulBlogPosts.getAllBlogPost()) || {};
   return {
     props: { hero, blogPosts },
+    revalidate: 10,
   };
 }
