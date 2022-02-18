@@ -5,6 +5,7 @@ import { ContentfulHeros } from "@contentful/contentfulHeros";
 import { ContentfulProjects } from "@contentful/contentfulProjects";
 import { Project } from "components/Project";
 import ProjectList from "components/ProjectList";
+import { SHEETS_URI } from "lib/Sheets";
 
 export default function Projects({ hero, projects }) {
   return (
@@ -35,6 +36,33 @@ export default function Projects({ hero, projects }) {
 export async function getStaticProps() {
   const hero = (await ContentfulHeros.getHeroItems(1)) || {};
   const projects = (await ContentfulProjects.getProjects()) || [];
+
+  let array = [];
+  let prices = [];
+
+  await fetch(`${SHEETS_URI}`)
+    .then((response) => response.blob())
+    .then(function (myBlob) {
+      myBlob.text().then((text) => (array = text.toString().split("\r\n")));
+    });
+
+  let headers = array[0].split(",");
+
+  for (let i = 1; i < array.length - 1; i++) {
+    let obj = {};
+
+    let str = array[i];
+
+    let properties = str.split(",");
+
+    for (let j in headers) {
+      obj[headers[j]] = properties[j];
+    }
+
+    prices.push(obj);
+  }
+
+  console.log(prices);
   return {
     props: { hero, projects },
     revalidate: 1,
