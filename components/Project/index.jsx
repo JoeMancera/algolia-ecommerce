@@ -20,6 +20,9 @@ export const Project = ({ project }) => {
       <div>
         <h3>{project.title}</h3>
         <RichText raw={project.description.json} />
+        <span>
+          <b>Price:</b> ${project.price}
+        </span>
       </div>
     </div>
   );

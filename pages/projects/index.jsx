@@ -6,8 +6,9 @@ import { ContentfulProjects } from "@contentful/contentfulProjects";
 import { Project } from "components/Project";
 import ProjectList from "components/ProjectList";
 import { getItemsPrice } from "lib/Sheets";
+import { mergeItemsPrice } from "lib/utils/mergeItemsPrice";
 
-export default function Projects({ hero, projects, prices }) {
+export default function Projects({ hero, projects }) {
   return (
     <CommonLayout>
       <Head description="Curran example">Contenful + Algolia | Projects</Head>
@@ -38,10 +39,12 @@ export async function getStaticProps() {
   const projects = (await ContentfulProjects.getProjects()) || [];
 
   const prices = await getItemsPrice();
-  console.log(prices, projects);
+  const itemsWithPrices = mergeItemsPrice(projects, prices);
+
+  console.log(itemsWithPrices);
 
   return {
-    props: { hero, projects, prices },
+    props: { hero, projects: itemsWithPrices, prices },
     revalidate: 1,
   };
 }
