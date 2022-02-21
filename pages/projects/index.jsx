@@ -45,6 +45,5 @@ export async function getStaticProps() {
 
   return {
     props: { hero, projects: itemsWithPrices, prices },
-    revalidate: 1,
   };
 }
